@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/users")
 public class UserController {
     private final UserService userService;
 
@@ -21,22 +23,22 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/user")
-    public void saveUser(@RequestBody UserCreateRequest request) {
-        userService.saveUser(request);
-    }
-
-    @GetMapping("/user")
+    @GetMapping
     public List<UserResponse> getUsers() {
         return userService.getUsers();
     }
 
-    @PutMapping("/user")
+    @PostMapping
+    public void saveUser(@RequestBody UserCreateRequest request) {
+        userService.saveUser(request);
+    }
+
+    @PutMapping
     public void updateUserName(@RequestBody UserUpdateRequest request) {
         userService.updateUserName(request);
     }
 
-    @DeleteMapping("/user")
+    @DeleteMapping
     public void deleteUser(@RequestParam String name) {
         userService.deleteUser(name);
     }

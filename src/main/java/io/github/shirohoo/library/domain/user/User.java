@@ -9,10 +9,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "users") // user is keyword in h2
 public class User {
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -27,12 +29,11 @@ public class User {
     private final List<UserLoanHistory> userLoanHistories = new ArrayList<>();
 
     public User() {
-
     }
 
     public User(String name, Integer age) {
         if (name.isBlank()) {
-            throw new IllegalArgumentException("이름은 비어 있을 수 없습니다");
+            throw new IllegalArgumentException("'name' must not be null or empty.");
         }
         this.name = name;
         this.age = age;
@@ -43,26 +44,30 @@ public class User {
     }
 
     public void loanBook(Book book) {
-        this.userLoanHistories.add(new UserLoanHistory(this, book.getName(), false));
+        String bookName = book.getName();
+        UserLoanHistory userLoanHistory = new UserLoanHistory(this, bookName, false);
+        this.userLoanHistories.add(userLoanHistory);
     }
 
     public void returnBook(String bookName) {
-        UserLoanHistory targetHistory = this.userLoanHistories.stream()
+        UserLoanHistory targetLoanHistory = this.userLoanHistories
+                .stream()
                 .filter(history -> history.getBookName().equals(bookName))
                 .findFirst()
                 .orElseThrow();
-        targetHistory.doReturn();
+
+        targetLoanHistory.doReturn();
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public Integer getAge() {
-        return age;
+        return this.age;
     }
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 }

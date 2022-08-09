@@ -16,17 +16,16 @@ public class Book {
     private String name;
 
     public Book() {
-
     }
 
     public Book(String name) {
         if (name.isBlank()) {
-            throw new IllegalArgumentException("이름은 비어 있을 수 없습니다");
+            throw new IllegalArgumentException("'name' must not be null or empty.");
         }
         this.name = name;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 }

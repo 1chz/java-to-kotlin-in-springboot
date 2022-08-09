@@ -21,7 +21,6 @@ public class UserLoanHistory {
     private boolean isReturn;
 
     public UserLoanHistory() {
-
     }
 
     public UserLoanHistory(User user, String bookName, boolean isReturn) {

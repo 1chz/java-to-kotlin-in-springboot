@@ -35,18 +35,22 @@ public class BookService {
 
     @Transactional
     public void loanBook(BookLoanRequest request) {
-        Book book = bookRepository.findByName(request.getBookName()).orElseThrow(IllegalArgumentException::new);
-        if (userLoanHistoryRepository.findByBookNameAndIsReturn(request.getBookName(), false) != null) {
-            throw new IllegalArgumentException("진작 대출되어 있는 책입니다");
+        String userName = request.getUserName();
+        String bookName = request.getBookName();
+
+        if (userLoanHistoryRepository.existsByBookNameAndIsReturn(bookName, false)) {
+            throw new IllegalArgumentException("this book has already been borrowed.");
         }
 
-        User user = userRepository.findByName(request.getUserName()).orElseThrow(IllegalArgumentException::new);
+        User user = userRepository.findByName(userName).orElseThrow();
+        Book book = bookRepository.findByName(bookName).orElseThrow();
         user.loanBook(book);
     }
 
     @Transactional
     public void returnBook(BookReturnRequest request) {
-        User user = userRepository.findByName(request.getUserName()).orElseThrow(IllegalArgumentException::new);
+        String userName = request.getUserName();
+        User user = userRepository.findByName(userName).orElseThrow();
         user.returnBook(request.getBookName());
     }
 }

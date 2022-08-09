@@ -7,9 +7,11 @@ import io.github.shirohoo.library.service.book.BookService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/books")
 public class BookController {
     private final BookService bookService;
 
@@ -17,17 +19,17 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @PostMapping("/book")
+    @PostMapping
     public void saveBook(@RequestBody BookRequest request) {
         bookService.saveBook(request);
     }
 
-    @PostMapping("/book/loan")
+    @PostMapping("/loan")
     public void loanBook(@RequestBody BookLoanRequest request) {
         bookService.loanBook(request);
     }
 
-    @PutMapping("/book/return")
+    @PutMapping("/return")
     public void returnBook(@RequestBody BookReturnRequest request) {
         bookService.returnBook(request);
     }

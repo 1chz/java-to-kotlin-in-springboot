@@ -26,20 +26,21 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public List<UserResponse> getUsers() {
-        return userRepository.findAll().stream()
+        return userRepository.findAll()
+                .stream()
                 .map(UserResponse::new)
                 .collect(Collectors.toList());
     }
 
     @Transactional
     public void updateUserName(UserUpdateRequest request) {
-        User user = userRepository.findById(request.getId()).orElseThrow(IllegalArgumentException::new);
+        User user = userRepository.findById(request.getId()).orElseThrow();
         user.updateName(request.getName());
     }
 
     @Transactional
     public void deleteUser(String name) {
-        User user = userRepository.findByName(name).orElseThrow(IllegalArgumentException::new);
+        User user = userRepository.findByName(name).orElseThrow();
         userRepository.delete(user);
     }
 }

@@ -1,7 +1,6 @@
-package io.github.shirohoo.library.domain.user.loanhistory;
+package io.github.shirohoo.library.domain.user;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
-import io.github.shirohoo.library.domain.user.User;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -16,21 +15,21 @@ public class UserLoanHistory {
     @ManyToOne
     private User user;
 
-    private String bookName;
+    private String bookTitle;
 
     private boolean isReturn;
 
     public UserLoanHistory() {
     }
 
-    public UserLoanHistory(User user, String bookName, boolean isReturn) {
+    public UserLoanHistory(User user, String bookTitle, boolean isReturn) {
         this.user = user;
-        this.bookName = bookName;
+        this.bookTitle = bookTitle;
         this.isReturn = isReturn;
     }
 
-    public String getBookName() {
-        return this.bookName;
+    public String getBookTitle() {
+        return this.bookTitle;
     }
 
     public void doReturn() {

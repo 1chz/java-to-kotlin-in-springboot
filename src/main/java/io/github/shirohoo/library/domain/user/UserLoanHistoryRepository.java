@@ -1,7 +1,7 @@
-package io.github.shirohoo.library.domain.user.loanhistory;
+package io.github.shirohoo.library.domain.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserLoanHistoryRepository extends JpaRepository<UserLoanHistory, Long> {
-    boolean existsByBookNameAndIsReturn(String bookName, boolean isReturn);
+    boolean existsByBookTitleAndIsReturn(String bookTitle, boolean isReturn);
 }

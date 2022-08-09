@@ -13,19 +13,19 @@ public class Book {
     private Long id;
 
     @Column(nullable = false)
-    private String name;
+    private String title;
 
     public Book() {
     }
 
-    public Book(String name) {
-        if (name.isBlank()) {
-            throw new IllegalArgumentException("'name' must not be null or empty.");
+    public Book(String title) {
+        if (title.isBlank()) {
+            throw new IllegalArgumentException("'title' must not be null or empty.");
         }
-        this.name = name;
+        this.title = title;
     }
 
-    public String getName() {
-        return this.name;
+    public String getTitle() {
+        return this.title;
     }
 }

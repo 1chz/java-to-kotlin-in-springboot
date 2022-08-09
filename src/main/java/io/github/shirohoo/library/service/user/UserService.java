@@ -2,9 +2,7 @@ package io.github.shirohoo.library.service.user;
 
 import io.github.shirohoo.library.domain.user.User;
 import io.github.shirohoo.library.domain.user.UserRepository;
-import io.github.shirohoo.library.dto.user.request.UserCreateRequest;
-import io.github.shirohoo.library.dto.user.request.UserUpdateRequest;
-import io.github.shirohoo.library.dto.user.response.UserResponse;
+import io.github.shirohoo.library.dto.user.UserResponse;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
@@ -19,8 +17,7 @@ public class UserService {
     }
 
     @Transactional
-    public void saveUser(UserCreateRequest request) {
-        User newUser = new User(request.getName(), request.getAge());
+    public void saveUser(User newUser) {
         userRepository.save(newUser);
     }
 
@@ -33,9 +30,9 @@ public class UserService {
     }
 
     @Transactional
-    public void updateUserName(UserUpdateRequest request) {
-        User user = userRepository.findById(request.getId()).orElseThrow();
-        user.updateName(request.getName());
+    public void updateUserName(long userId, String username) {
+        User user = userRepository.findById(userId).orElseThrow();
+        user.updateName(username);
     }
 
     @Transactional

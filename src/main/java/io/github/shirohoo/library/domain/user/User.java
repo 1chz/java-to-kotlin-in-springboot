@@ -2,7 +2,6 @@ package io.github.shirohoo.library.domain.user;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 import io.github.shirohoo.library.domain.book.Book;
-import io.github.shirohoo.library.domain.user.loanhistory.UserLoanHistory;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -44,7 +43,7 @@ public class User {
     }
 
     public void loanBook(Book book) {
-        String bookName = book.getName();
+        String bookName = book.getTitle();
         UserLoanHistory userLoanHistory = new UserLoanHistory(this, bookName, false);
         this.userLoanHistories.add(userLoanHistory);
     }
@@ -52,7 +51,7 @@ public class User {
     public void returnBook(String bookName) {
         UserLoanHistory targetLoanHistory = this.userLoanHistories
                 .stream()
-                .filter(history -> history.getBookName().equals(bookName))
+                .filter(history -> history.getBookTitle().equals(bookName))
                 .findFirst()
                 .orElseThrow();
 

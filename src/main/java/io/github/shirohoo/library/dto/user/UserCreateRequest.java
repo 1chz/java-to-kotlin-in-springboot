@@ -1,4 +1,4 @@
-package io.github.shirohoo.library.dto.user.request;
+package io.github.shirohoo.library.dto.user;
 
 public class UserCreateRequest {
     private String name;

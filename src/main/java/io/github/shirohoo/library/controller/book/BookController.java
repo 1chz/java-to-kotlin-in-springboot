@@ -1,8 +1,9 @@
 package io.github.shirohoo.library.controller.book;
 
-import io.github.shirohoo.library.dto.book.request.BookLoanRequest;
-import io.github.shirohoo.library.dto.book.request.BookRequest;
-import io.github.shirohoo.library.dto.book.request.BookReturnRequest;
+import io.github.shirohoo.library.domain.book.Book;
+import io.github.shirohoo.library.dto.book.BookLoanRequest;
+import io.github.shirohoo.library.dto.book.BookRequest;
+import io.github.shirohoo.library.dto.book.BookReturnRequest;
 import io.github.shirohoo.library.service.book.BookService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -21,16 +22,21 @@ public class BookController {
 
     @PostMapping
     public void saveBook(@RequestBody BookRequest request) {
-        bookService.saveBook(request);
+        Book newBook = new Book(request.getName());
+        bookService.saveBook(newBook);
     }
 
     @PostMapping("/loan")
     public void loanBook(@RequestBody BookLoanRequest request) {
-        bookService.loanBook(request);
+        String username = request.getUserName();
+        String bookTitle = request.getBookName();
+        bookService.loanBook(username, bookTitle);
     }
 
     @PutMapping("/return")
     public void returnBook(@RequestBody BookReturnRequest request) {
-        bookService.returnBook(request);
+        String username = request.getUserName();
+        String bookTitle = request.getBookName();
+        bookService.returnBook(username, bookTitle);
     }
 }

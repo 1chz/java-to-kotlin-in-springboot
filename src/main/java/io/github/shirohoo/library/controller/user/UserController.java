@@ -1,8 +1,9 @@
 package io.github.shirohoo.library.controller.user;
 
-import io.github.shirohoo.library.dto.user.request.UserCreateRequest;
-import io.github.shirohoo.library.dto.user.request.UserUpdateRequest;
-import io.github.shirohoo.library.dto.user.response.UserResponse;
+import io.github.shirohoo.library.domain.user.User;
+import io.github.shirohoo.library.dto.user.UserCreateRequest;
+import io.github.shirohoo.library.dto.user.UserResponse;
+import io.github.shirohoo.library.dto.user.UserUpdateRequest;
 import io.github.shirohoo.library.service.user.UserService;
 import java.util.List;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,12 +31,16 @@ public class UserController {
 
     @PostMapping
     public void saveUser(@RequestBody UserCreateRequest request) {
-        userService.saveUser(request);
+        String username = request.getName();
+        Integer age = request.getAge();
+        userService.saveUser(new User(username, age));
     }
 
     @PutMapping
     public void updateUserName(@RequestBody UserUpdateRequest request) {
-        userService.updateUserName(request);
+        long userId = request.getId();
+        String username = request.getName();
+        userService.updateUserName(userId, username);
     }
 
     @DeleteMapping

@@ -1,15 +1,15 @@
 package io.github.shirohoo.library.domain.user;
 
-import static jakarta.persistence.GenerationType.IDENTITY;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
 @Entity
 public class UserLoanHistory {
     @Id
-    @GeneratedValue(strategy = IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne

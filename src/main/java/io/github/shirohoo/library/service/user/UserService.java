@@ -2,9 +2,7 @@ package io.github.shirohoo.library.service.user;
 
 import io.github.shirohoo.library.domain.user.User;
 import io.github.shirohoo.library.domain.user.UserRepository;
-import io.github.shirohoo.library.dto.user.UserResponse;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,11 +20,8 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public List<UserResponse> getUsers() {
-        return userRepository.findAll()
-                .stream()
-                .map(UserResponse::new)
-                .collect(Collectors.toList());
+    public List<User> getUsers() {
+        return userRepository.findAll();
     }
 
     @Transactional

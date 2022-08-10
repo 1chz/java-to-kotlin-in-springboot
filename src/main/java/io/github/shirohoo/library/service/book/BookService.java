@@ -11,8 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class BookService {
     private final BookRepository bookRepository;
-    private final UserRepository userRepository;
-    private final UserLoanHistoryRepository userLoanHistoryRepository;
+    private final UserRepository userJpaRepository;
+    private final UserLoanHistoryRepository userLoanHistoryJpaRepository;
 
     public BookService(
             BookRepository bookRepository,
@@ -20,8 +20,8 @@ public class BookService {
             UserLoanHistoryRepository userLoanHistoryRepository
     ) {
         this.bookRepository = bookRepository;
-        this.userRepository = userRepository;
-        this.userLoanHistoryRepository = userLoanHistoryRepository;
+        this.userJpaRepository = userRepository;
+        this.userLoanHistoryJpaRepository = userLoanHistoryRepository;
     }
 
     @Transactional
@@ -31,11 +31,11 @@ public class BookService {
 
     @Transactional
     public void loanBook(String username, String bookTitle) {
-        if (userLoanHistoryRepository.existsByBookTitleAndIsReturn(bookTitle, false)) {
+        if (userLoanHistoryJpaRepository.existsByBookTitleAndIsReturn(bookTitle, false)) {
             throw new IllegalArgumentException("this book has already been borrowed.");
         }
 
-        User user = userRepository.findByName(username).orElseThrow();
+        User user = userJpaRepository.findByName(username).orElseThrow();
         Book book = bookRepository.findByTitle(bookTitle).orElseThrow();
 
         user.loanBook(book);
@@ -43,7 +43,7 @@ public class BookService {
 
     @Transactional
     public void returnBook(String username, String bookTitle) {
-        User user = userRepository.findByName(username).orElseThrow();
+        User user = userJpaRepository.findByName(username).orElseThrow();
         user.returnBook(bookTitle);
     }
 }

@@ -26,7 +26,10 @@ public class UserController {
 
     @GetMapping
     public List<UserResponse> getUsers() {
-        return userService.getUsers();
+        return userService.getUsers()
+                .stream()
+                .map(UserResponse::new)
+                .toList();
     }
 
     @PostMapping

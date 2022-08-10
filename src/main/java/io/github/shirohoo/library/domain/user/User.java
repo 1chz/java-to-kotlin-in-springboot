@@ -1,11 +1,11 @@
 package io.github.shirohoo.library.domain.user;
 
-import static jakarta.persistence.GenerationType.IDENTITY;
 import io.github.shirohoo.library.domain.book.Book;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -16,7 +16,7 @@ import java.util.List;
 @Table(name = "users") // user is keyword in h2
 public class User {
     @Id
-    @GeneratedValue(strategy = IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)

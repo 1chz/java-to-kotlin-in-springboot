@@ -11,8 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class BookService {
     private final BookRepository bookRepository;
-    private final UserRepository userJpaRepository;
-    private final UserLoanHistoryRepository userLoanHistoryJpaRepository;
+    private final UserRepository userRepository;
+    private final UserLoanHistoryRepository userLoanHistoryRepository;
 
     public BookService(
             BookRepository bookRepository,
@@ -20,30 +20,32 @@ public class BookService {
             UserLoanHistoryRepository userLoanHistoryRepository
     ) {
         this.bookRepository = bookRepository;
-        this.userJpaRepository = userRepository;
-        this.userLoanHistoryJpaRepository = userLoanHistoryRepository;
+        this.userRepository = userRepository;
+        this.userLoanHistoryRepository = userLoanHistoryRepository;
     }
 
     @Transactional
     public void saveBook(Book newBook) {
-        bookRepository.save(newBook);
+        if (bookRepository.save(newBook) == null) {
+            throw new IllegalStateException("failed to save new book.");
+        }
     }
 
     @Transactional
     public void loanBook(String username, String bookTitle) {
-        if (userLoanHistoryJpaRepository.existsByBookTitleAndIsReturn(bookTitle, false)) {
+        if (userLoanHistoryRepository.existsBy(bookTitle, false)) {
             throw new IllegalArgumentException("this book has already been borrowed.");
         }
 
-        User user = userJpaRepository.findByName(username).orElseThrow();
-        Book book = bookRepository.findByTitle(bookTitle).orElseThrow();
+        User user = userRepository.findBy(username).orElseThrow();
+        Book book = bookRepository.findBy(bookTitle).orElseThrow();
 
         user.loanBook(book);
     }
 
     @Transactional
     public void returnBook(String username, String bookTitle) {
-        User user = userJpaRepository.findByName(username).orElseThrow();
+        User user = userRepository.findBy(username).orElseThrow();
         user.returnBook(bookTitle);
     }
 }

@@ -1,8 +1,16 @@
 package io.github.shirohoo.library.domain.user;
 
+import java.util.List;
 import java.util.Optional;
-import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findByName(String name);
+public interface UserRepository {
+    User save(User newUser);
+
+    List<User> findAll();
+
+    Optional<User> findBy(long id);
+
+    Optional<User> findBy(String username);
+
+    boolean delete(User user);
 }

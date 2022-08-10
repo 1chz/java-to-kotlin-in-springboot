@@ -16,7 +16,9 @@ public class UserService {
 
     @Transactional
     public void saveUser(User newUser) {
-        userRepository.save(newUser);
+        if (userRepository.save(newUser) == null) {
+            throw new IllegalStateException("failed save to new user");
+        }
     }
 
     @Transactional(readOnly = true)
@@ -26,13 +28,15 @@ public class UserService {
 
     @Transactional
     public void updateUserName(long userId, String username) {
-        User user = userRepository.findById(userId).orElseThrow();
+        User user = userRepository.findBy(userId).orElseThrow();
         user.updateName(username);
     }
 
     @Transactional
     public void deleteUser(String name) {
-        User user = userRepository.findByName(name).orElseThrow();
-        userRepository.delete(user);
+        User user = userRepository.findBy(name).orElseThrow();
+        if (!userRepository.delete(user)) {
+            throw new IllegalStateException("failed delete to user");
+        }
     }
 }

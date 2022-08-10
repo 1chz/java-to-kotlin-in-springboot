@@ -1,4 +1,4 @@
-package io.github.shirohoo.library.service.book;
+package io.github.shirohoo.library.application.service.book;
 
 import io.github.shirohoo.library.domain.book.Book;
 import io.github.shirohoo.library.domain.book.BookRepository;

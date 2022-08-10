@@ -1,4 +1,4 @@
-package io.github.shirohoo.library.persistance.user;
+package io.github.shirohoo.library.application.persistance.user;
 
 import io.github.shirohoo.library.domain.user.UserLoanHistory;
 import org.springframework.data.jpa.repository.JpaRepository;

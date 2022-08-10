@@ -1,4 +1,4 @@
-package io.github.shirohoo.library.persistance.book;
+package io.github.shirohoo.library.application.persistance.book;
 
 import io.github.shirohoo.library.domain.book.Book;
 import io.github.shirohoo.library.domain.book.BookRepository;

@@ -1,4 +1,4 @@
-package io.github.shirohoo.library.service.user;
+package io.github.shirohoo.library.application.service.user;
 
 import io.github.shirohoo.library.domain.user.User;
 import io.github.shirohoo.library.domain.user.UserRepository;

@@ -1,4 +1,4 @@
-package io.github.shirohoo.library.dto.book;
+package io.github.shirohoo.library.application.dto.book;
 
 public class BookRequest {
     private String name;

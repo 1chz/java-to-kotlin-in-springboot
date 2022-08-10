@@ -1,4 +1,4 @@
-package io.github.shirohoo.library.dto.user;
+package io.github.shirohoo.library.application.dto.user;
 
 import io.github.shirohoo.library.domain.user.User;
 

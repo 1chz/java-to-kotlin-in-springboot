@@ -1,6 +1,6 @@
-package io.github.shirohoo.library.dto.book;
+package io.github.shirohoo.library.application.dto.book;
 
-public class BookReturnRequest {
+public class BookLoanRequest {
     private String userName;
     private String bookName;
 

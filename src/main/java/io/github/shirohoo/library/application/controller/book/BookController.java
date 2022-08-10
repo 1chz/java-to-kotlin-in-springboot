@@ -1,10 +1,10 @@
-package io.github.shirohoo.library.controller.book;
+package io.github.shirohoo.library.application.controller.book;
 
+import io.github.shirohoo.library.application.dto.book.BookReturnRequest;
+import io.github.shirohoo.library.application.service.book.BookService;
 import io.github.shirohoo.library.domain.book.Book;
-import io.github.shirohoo.library.dto.book.BookLoanRequest;
-import io.github.shirohoo.library.dto.book.BookRequest;
-import io.github.shirohoo.library.dto.book.BookReturnRequest;
-import io.github.shirohoo.library.service.book.BookService;
+import io.github.shirohoo.library.application.dto.book.BookLoanRequest;
+import io.github.shirohoo.library.application.dto.book.BookRequest;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;

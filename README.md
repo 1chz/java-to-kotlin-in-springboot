@@ -15,3 +15,10 @@
 - Kotlin 1.7
 - Spring Boot 3 (Snapshot)
 - Gradle 7.5
+
+## Index
+
+```shell
+http://localhost:8080/v1/index.html
+http://localhost:8080/v2/index.html
+```

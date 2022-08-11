@@ -8,7 +8,7 @@ import io.github.shirohoo.library.domain.user.User
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/user")
 class UserController(
     private val userService: UserService
 ) {

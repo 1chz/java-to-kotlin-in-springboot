@@ -8,7 +8,7 @@ import io.github.shirohoo.library.domain.book.Book
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/books")
+@RequestMapping("/book")
 class BookController(
     private val bookService: BookService
 ) {

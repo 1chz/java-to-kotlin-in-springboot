@@ -13,7 +13,7 @@
 - GraalVM
 - Java 17
 - Kotlin 1.7
-- Spring Boot 3 (Snapshot)
+- Spring Boot 2.7.2
 - Gradle 7.5
 
 ## Index

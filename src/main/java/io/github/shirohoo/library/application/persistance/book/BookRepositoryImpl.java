@@ -1,6 +1,6 @@
 package io.github.shirohoo.library.application.persistance.book;
 
-import io.github.shirohoo.library.domain.book.Book;
+import io.github.shirohoo.library.application.domain.book.Book;
 import io.github.shirohoo.library.domain.book.BookRepository;
 import java.util.Optional;
 import org.springframework.stereotype.Repository;

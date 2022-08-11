@@ -1,5 +1,6 @@
 package io.github.shirohoo.library.domain.user;
 
+import io.github.shirohoo.library.application.domain.user.User;
 import java.util.List;
 import java.util.Optional;
 

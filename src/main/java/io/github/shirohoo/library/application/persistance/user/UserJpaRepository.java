@@ -1,6 +1,6 @@
 package io.github.shirohoo.library.application.persistance.user;
 
-import io.github.shirohoo.library.domain.user.User;
+import io.github.shirohoo.library.application.domain.user.User;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 

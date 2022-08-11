@@ -1,6 +1,6 @@
 package io.github.shirohoo.library.application.persistance.user;
 
-import io.github.shirohoo.library.domain.user.User;
+import io.github.shirohoo.library.application.domain.user.User;
 import io.github.shirohoo.library.domain.user.UserRepository;
 import java.util.List;
 import java.util.Optional;

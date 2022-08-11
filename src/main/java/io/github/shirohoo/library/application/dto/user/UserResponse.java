@@ -1,6 +1,6 @@
 package io.github.shirohoo.library.application.dto.user;
 
-import io.github.shirohoo.library.domain.user.User;
+import io.github.shirohoo.library.application.domain.user.User;
 
 public class UserResponse {
     private final long id;

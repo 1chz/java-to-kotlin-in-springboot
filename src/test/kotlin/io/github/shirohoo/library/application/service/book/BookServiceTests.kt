@@ -1,9 +1,9 @@
 package io.github.shirohoo.library.application.service.book
 
 import io.github.shirohoo.library.application.domain.book.Book
+import io.github.shirohoo.library.application.domain.user.User
 import io.github.shirohoo.library.application.persistance.book.BookJpaRepository
 import io.github.shirohoo.library.application.persistance.user.UserJpaRepository
-import io.github.shirohoo.library.domain.user.User
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
@@ -19,17 +19,17 @@ class BookServiceTests @Autowired constructor(
 ) {
     @Test
     fun `새로운 도서를 저장한다`() {
-        val newBook = Book(title = "book title")
+        val newBook = Book("book title")
         assertDoesNotThrow { sut.saveBook(newBook) }
     }
 
     @Test
     fun `도서를 대출할 수 있다`() {
         // given
-        val newUser = User("username", null)
+        val newUser = User("username")
         userJpaRepository.save(newUser)
 
-        val newBook = Book(title = "book title")
+        val newBook = Book("book title")
         sut.saveBook(newBook)
 
         // when and then
@@ -39,10 +39,10 @@ class BookServiceTests @Autowired constructor(
     @Test
     fun `이미 대출된 도서를 대출할수는 없다`() {
         // given
-        val newUser = User("username", null)
+        val newUser = User("username")
         userJpaRepository.save(newUser)
 
-        val newBook = Book(title = "book title")
+        val newBook = Book("book title")
         sut.saveBook(newBook)
 
         sut.loanBook("username", "book title")
@@ -56,10 +56,10 @@ class BookServiceTests @Autowired constructor(
     @Test
     fun `대출한 도서를 반납할 수 있다`() {
         // given
-        val newUser = User("username", null)
+        val newUser = User("username")
         userJpaRepository.save(newUser)
 
-        val newBook = Book(title = "book title")
+        val newBook = Book("book title")
         sut.saveBook(newBook)
 
         sut.loanBook("username", "book title")

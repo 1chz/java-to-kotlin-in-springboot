@@ -7,11 +7,11 @@ import javax.persistence.Id
 
 @Entity
 class Book(
+    val title: String,
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
-
-    val title: String
 ) {
     init {
         require(title.isNotBlank()) {

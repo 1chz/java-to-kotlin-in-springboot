@@ -22,7 +22,7 @@ public class BookController {
 
     @PostMapping
     public void saveBook(@RequestBody BookRequest request) {
-        Book newBook = new Book(null, request.getName());
+        Book newBook = new Book(request.getName(), null);
         bookService.saveBook(newBook);
     }
 

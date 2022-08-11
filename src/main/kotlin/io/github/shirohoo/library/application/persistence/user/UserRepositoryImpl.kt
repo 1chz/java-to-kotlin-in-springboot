@@ -3,7 +3,6 @@ package io.github.shirohoo.library.application.persistence.user
 import io.github.shirohoo.library.domain.user.User
 import io.github.shirohoo.library.domain.user.UserRepository
 import org.springframework.stereotype.Repository
-import java.util.*
 
 @Repository
 class UserRepositoryImpl(
@@ -17,12 +16,14 @@ class UserRepositoryImpl(
         return jpaRepository.findAll()
     }
 
-    override fun findBy(id: Long): Optional<User> {
+    override fun findBy(id: Long): User {
         return jpaRepository.findById(id)
+            .orElseThrow { NoSuchElementException("user not found.") }
     }
 
-    override fun findBy(username: String): Optional<User> {
+    override fun findBy(username: String): User {
         return jpaRepository.findByName(username)
+            .orElseThrow { NoSuchElementException("user not found.") }
     }
 
     override fun delete(user: User) {

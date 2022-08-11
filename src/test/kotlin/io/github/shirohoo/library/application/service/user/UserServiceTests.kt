@@ -2,6 +2,7 @@ package io.github.shirohoo.library.application.service.user
 
 import io.github.shirohoo.library.application.persistence.book.BookJpaRepository
 import io.github.shirohoo.library.application.persistence.user.UserJpaRepository
+import io.github.shirohoo.library.application.service.UserService
 import io.github.shirohoo.library.domain.user.User
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
@@ -29,7 +30,7 @@ class UserServiceTests @Autowired constructor(
         sut.saveUser(User("user2", 20))
 
         // when
-        val users = sut.users
+        val users = sut.getUsers()
 
         // then
         assertThat(users).extracting("name").containsExactlyInAnyOrder("user1", "user2")

@@ -3,7 +3,6 @@ package io.github.shirohoo.library.application.persistence.book
 import io.github.shirohoo.library.domain.book.Book
 import io.github.shirohoo.library.domain.book.BookRepository
 import org.springframework.stereotype.Repository
-import java.util.*
 
 @Repository
 class BookRepositoryImpl(
@@ -13,7 +12,8 @@ class BookRepositoryImpl(
         return jpaRepository.save(newBook)
     }
 
-    override fun findBy(bookTitle: String): Optional<Book> {
+    override fun findBy(bookTitle: String): Book {
         return jpaRepository.findByTitle(bookTitle)
+            .orElseThrow { NoSuchElementException("book not found.") }
     }
 }

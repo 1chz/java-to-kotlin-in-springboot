@@ -37,15 +37,15 @@ public class BookService {
             throw new IllegalArgumentException("this book has already been borrowed.");
         }
 
-        User user = userRepository.findBy(username).orElseThrow();
-        Book book = bookRepository.findBy(bookTitle).orElseThrow();
+        User user = userRepository.findBy(username);
+        Book book = bookRepository.findBy(bookTitle);
 
         user.loanBook(book);
     }
 
     @Transactional
     public void returnBook(String username, String bookTitle) {
-        User user = userRepository.findBy(username).orElseThrow();
+        User user = userRepository.findBy(username);
         user.returnBook(bookTitle);
     }
 }

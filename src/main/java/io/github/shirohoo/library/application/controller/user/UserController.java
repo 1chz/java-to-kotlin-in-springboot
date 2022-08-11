@@ -3,7 +3,7 @@ package io.github.shirohoo.library.application.controller.user;
 import io.github.shirohoo.library.application.dto.user.UserCreateRequest;
 import io.github.shirohoo.library.application.dto.user.UserResponse;
 import io.github.shirohoo.library.application.dto.user.UserUpdateRequest;
-import io.github.shirohoo.library.application.service.user.UserService;
+import io.github.shirohoo.library.application.service.UserService;
 import io.github.shirohoo.library.domain.user.User;
 import java.util.ArrayList;
 import java.util.List;

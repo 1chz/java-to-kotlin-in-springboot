@@ -1,10 +1,10 @@
 package io.github.shirohoo.library.application.controller.user;
 
-import io.github.shirohoo.library.application.domain.user.User;
 import io.github.shirohoo.library.application.dto.user.UserCreateRequest;
 import io.github.shirohoo.library.application.dto.user.UserResponse;
 import io.github.shirohoo.library.application.dto.user.UserUpdateRequest;
 import io.github.shirohoo.library.application.service.user.UserService;
+import io.github.shirohoo.library.domain.user.User;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.web.bind.annotation.DeleteMapping;

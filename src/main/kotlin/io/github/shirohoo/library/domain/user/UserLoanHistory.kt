@@ -1,4 +1,4 @@
-package io.github.shirohoo.library.application.domain.user
+package io.github.shirohoo.library.domain.user
 
 import javax.persistence.*
 

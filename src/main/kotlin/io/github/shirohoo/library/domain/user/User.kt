@@ -1,6 +1,6 @@
-package io.github.shirohoo.library.application.domain.user
+package io.github.shirohoo.library.domain.user
 
-import io.github.shirohoo.library.application.domain.book.Book
+import io.github.shirohoo.library.domain.book.Book
 import javax.persistence.*
 
 @Entity

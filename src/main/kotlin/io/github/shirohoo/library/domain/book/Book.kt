@@ -1,4 +1,4 @@
-package io.github.shirohoo.library.application.domain.book
+package io.github.shirohoo.library.domain.book
 
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue

@@ -1,8 +1,8 @@
 package io.github.shirohoo.library.application.service.book;
 
-import io.github.shirohoo.library.application.domain.book.Book;
-import io.github.shirohoo.library.application.domain.user.User;
+import io.github.shirohoo.library.domain.book.Book;
 import io.github.shirohoo.library.domain.book.BookRepository;
+import io.github.shirohoo.library.domain.user.User;
 import io.github.shirohoo.library.domain.user.UserLoanHistoryRepository;
 import io.github.shirohoo.library.domain.user.UserRepository;
 import org.springframework.stereotype.Service;

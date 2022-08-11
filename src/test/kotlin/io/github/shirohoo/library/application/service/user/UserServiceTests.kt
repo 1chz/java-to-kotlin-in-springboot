@@ -1,8 +1,8 @@
 package io.github.shirohoo.library.application.service.user
 
-import io.github.shirohoo.library.application.domain.user.User
-import io.github.shirohoo.library.application.persistance.book.BookJpaRepository
-import io.github.shirohoo.library.application.persistance.user.UserJpaRepository
+import io.github.shirohoo.library.application.persistence.book.BookJpaRepository
+import io.github.shirohoo.library.application.persistence.user.UserJpaRepository
+import io.github.shirohoo.library.domain.user.User
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test

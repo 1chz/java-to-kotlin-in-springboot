@@ -1,6 +1,6 @@
 package io.github.shirohoo.library.application.service.user;
 
-import io.github.shirohoo.library.application.domain.user.User;
+import io.github.shirohoo.library.domain.user.User;
 import io.github.shirohoo.library.domain.user.UserRepository;
 import java.util.List;
 import org.springframework.stereotype.Service;
@@ -16,9 +16,7 @@ public class UserService {
 
     @Transactional
     public void saveUser(User newUser) {
-        if (userRepository.save(newUser) == null) {
-            throw new IllegalStateException("failed save to new user");
-        }
+        userRepository.save(newUser);
     }
 
     @Transactional(readOnly = true)
@@ -35,8 +33,6 @@ public class UserService {
     @Transactional
     public void deleteUser(String name) {
         User user = userRepository.findBy(name).orElseThrow();
-        if (!userRepository.delete(user)) {
-            throw new IllegalStateException("failed delete to user");
-        }
+        userRepository.delete(user);
     }
 }

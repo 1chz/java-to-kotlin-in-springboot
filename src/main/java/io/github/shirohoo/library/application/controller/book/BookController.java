@@ -28,15 +28,15 @@ public class BookController {
 
     @PostMapping("/loan")
     public void loanBook(@RequestBody BookLoanRequest request) {
-        String username = request.getUserName();
-        String bookTitle = request.getBookName();
+        String username = request.getUsername();
+        String bookTitle = request.getBookTitle();
         bookService.loanBook(username, bookTitle);
     }
 
     @PutMapping("/return")
     public void returnBook(@RequestBody BookReturnRequest request) {
-        String username = request.getUserName();
-        String bookTitle = request.getBookName();
+        String username = request.getUsername();
+        String bookTitle = request.getBookTitle();
         bookService.returnBook(username, bookTitle);
     }
 }

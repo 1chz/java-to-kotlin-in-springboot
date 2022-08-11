@@ -29,7 +29,7 @@ public class UserController {
     public List<UserResponse> getUsers() {
         return userService.getUsers()
                 .stream()
-                .map(UserResponse::new)
+                .map(user -> new UserResponse(user.getId(), user.getName(), user.getAge()))
                 .toList();
     }
 

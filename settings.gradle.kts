@@ -1,9 +1,9 @@
-rootProject.name = "kopring-library-application"
-
 pluginManagement {
     repositories {
-        maven(url = "https://repo.spring.io/milestone")
-        maven(url = "https://repo.spring.io/snapshot")
+        mavenCentral()
         gradlePluginPortal()
+        maven("https://repo.spring.io/milestone")
+        maven("https://repo.spring.io/snapshot")
     }
 }
+rootProject.name = "kopring-library-application"

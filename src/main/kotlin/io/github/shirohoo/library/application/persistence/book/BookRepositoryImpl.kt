@@ -13,7 +13,6 @@ class BookRepositoryImpl(
     }
 
     override fun findBy(bookTitle: String): Book {
-        return jpaRepository.findByTitle(bookTitle)
-            .orElseThrow { NoSuchElementException("book not found.") }
+        return jpaRepository.findByTitle(bookTitle) ?: throw NoSuchElementException("book not found.")
     }
 }

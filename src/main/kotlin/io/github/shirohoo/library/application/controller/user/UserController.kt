@@ -1,8 +1,8 @@
 package io.github.shirohoo.library.application.controller.user
 
-import io.github.shirohoo.library.application.dto.user.UserCreateRequest
-import io.github.shirohoo.library.application.dto.user.UserResponse
-import io.github.shirohoo.library.application.dto.user.UserUpdateRequest
+import io.github.shirohoo.library.application.data.user.UserCreateRequest
+import io.github.shirohoo.library.application.data.user.UserResponse
+import io.github.shirohoo.library.application.data.user.UserUpdateRequest
 import io.github.shirohoo.library.application.service.user.UserService
 import io.github.shirohoo.library.domain.user.User
 import org.springframework.web.bind.annotation.*

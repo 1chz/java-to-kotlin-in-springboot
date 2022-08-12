@@ -1,4 +1,4 @@
-package io.github.shirohoo.library.application.dto.book
+package io.github.shirohoo.library.application.data.book
 
 import com.fasterxml.jackson.annotation.JsonProperty
 

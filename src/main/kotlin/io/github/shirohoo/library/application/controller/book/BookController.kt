@@ -14,7 +14,8 @@ class BookController(
 ) {
     @PostMapping
     fun saveBook(@RequestBody request: BookRequest) {
-        val newBook = Book(request.name)
+        val (title, type) = request
+        val newBook = Book(title, type)
         bookService.saveBook(newBook)
     }
 

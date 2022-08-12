@@ -3,6 +3,7 @@ package io.github.shirohoo.library.application.service.book
 import io.github.shirohoo.library.application.persistence.book.BookJpaRepository
 import io.github.shirohoo.library.application.persistence.user.UserJpaRepository
 import io.github.shirohoo.library.domain.book.Book
+import io.github.shirohoo.library.domain.book.BookType
 import io.github.shirohoo.library.domain.user.User
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
@@ -19,7 +20,7 @@ class BookServiceTests @Autowired constructor(
 ) {
     @Test
     fun `새로운 도서를 저장한다`() {
-        val newBook = Book("book title")
+        val newBook = bookFixture()
         assertDoesNotThrow { sut.saveBook(newBook) }
     }
 
@@ -29,7 +30,7 @@ class BookServiceTests @Autowired constructor(
         val newUser = User("username")
         userJpaRepository.save(newUser)
 
-        val newBook = Book("book title")
+        val newBook = bookFixture()
         sut.saveBook(newBook)
 
         // when and then
@@ -42,7 +43,7 @@ class BookServiceTests @Autowired constructor(
         val newUser = User("username")
         userJpaRepository.save(newUser)
 
-        val newBook = Book("book title")
+        val newBook = bookFixture()
         sut.saveBook(newBook)
 
         sut.loanBook("username", "book title")
@@ -59,7 +60,7 @@ class BookServiceTests @Autowired constructor(
         val newUser = User("username")
         userJpaRepository.save(newUser)
 
-        val newBook = Book("book title")
+        val newBook = bookFixture()
         sut.saveBook(newBook)
 
         sut.loanBook("username", "book title")
@@ -72,5 +73,9 @@ class BookServiceTests @Autowired constructor(
     fun tearDown() {
         userJpaRepository.deleteAll()
         bookJpaRepository.deleteAll()
+    }
+
+    fun bookFixture(): Book {
+        return Book("book title", BookType.COMPUTER)
     }
 }

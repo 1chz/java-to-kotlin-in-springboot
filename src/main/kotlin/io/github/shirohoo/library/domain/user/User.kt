@@ -32,7 +32,7 @@ class User(
 
     fun loanBook(book: Book) {
         val bookTitle = book.title
-        val userLoanHistory = UserLoanHistory(this, bookTitle, false)
+        val userLoanHistory = UserLoanHistory(this, bookTitle, UserLoanStatus.LOANED)
         this.userLoanHistories.add(userLoanHistory)
     }
 

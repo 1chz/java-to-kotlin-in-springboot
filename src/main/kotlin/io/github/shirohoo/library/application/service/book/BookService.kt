@@ -3,6 +3,7 @@ package io.github.shirohoo.library.application.service.book
 import io.github.shirohoo.library.domain.book.Book
 import io.github.shirohoo.library.domain.book.BookRepository
 import io.github.shirohoo.library.domain.user.UserLoanHistoryRepository
+import io.github.shirohoo.library.domain.user.UserLoanStatus
 import io.github.shirohoo.library.domain.user.UserRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -18,7 +19,7 @@ class BookService(
 
     @Transactional
     fun loanBook(username: String, bookTitle: String) {
-        if (userLoanHistoryRepository.existsBy(bookTitle, isReturn = false)) {
+        if (userLoanHistoryRepository.existsBy(bookTitle, UserLoanStatus.LOANED)) {
             throw IllegalArgumentException("this book has already been borrowed.")
         }
 

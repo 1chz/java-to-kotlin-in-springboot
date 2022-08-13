@@ -5,6 +5,7 @@ import io.github.shirohoo.library.application.persistence.user.UserJpaRepository
 import io.github.shirohoo.library.domain.book.Book
 import io.github.shirohoo.library.domain.book.BookType
 import io.github.shirohoo.library.domain.user.User
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
@@ -67,6 +68,39 @@ class BookServiceTests @Autowired constructor(
 
         // when and then
         assertDoesNotThrow { sut.returnBook("username", "book title") }
+    }
+
+    @Test
+    fun `대출한 도서의 수량을 확인할 수 있다`() {
+        // given
+        val newUser = User("username")
+        userJpaRepository.save(newUser)
+
+        val newBook = bookFixture()
+        sut.saveBook(newBook)
+
+        sut.loanBook("username", "book title")
+
+        // when
+        val loanedCount = sut.countLoanedBooks()
+
+        // then
+        assertThat(loanedCount).isEqualTo(1)
+    }
+
+    @Test
+    fun `대출중인 도서들의 현황을 파악할 수 있다`() {
+        // given
+        sut.saveBook(Book("clean code", BookType.COMPUTER))
+        sut.saveBook(Book("clean architecture", BookType.COMPUTER))
+        sut.saveBook(Book("computer science", BookType.SCIENCE))
+
+        // when
+        val statistics = sut.getBookStatistics()
+
+        // then
+        assertThat(statistics[BookType.COMPUTER]).hasSize(2)
+        assertThat(statistics[BookType.SCIENCE]).hasSize(1)
     }
 
     @AfterEach

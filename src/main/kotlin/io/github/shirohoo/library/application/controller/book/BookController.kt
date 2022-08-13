@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.*
 class BookController(
     private val bookService: BookService
 ) {
+    @GetMapping("/loan")
+    fun countLoanedBooks(): Int = bookService.countLoanedBooks()
+
     @PostMapping
     fun saveBook(@RequestBody request: BookRequest) {
         val (title, type) = request

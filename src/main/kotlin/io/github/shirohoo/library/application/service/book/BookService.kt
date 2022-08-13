@@ -34,4 +34,7 @@ class BookService(
         val user = userRepository.findBy(username)
         user.returnBook(bookTitle)
     }
+
+    @Transactional(readOnly = true)
+    fun countLoanedBooks(): Int = userLoanHistoryRepository.findAllByStatus(UserLoanStatus.LOANED).count()
 }

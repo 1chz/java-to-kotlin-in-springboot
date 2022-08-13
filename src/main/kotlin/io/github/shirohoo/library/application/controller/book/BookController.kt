@@ -3,6 +3,7 @@ package io.github.shirohoo.library.application.controller.book
 import io.github.shirohoo.library.application.data.book.BookLoanRequest
 import io.github.shirohoo.library.application.data.book.BookRequest
 import io.github.shirohoo.library.application.data.book.BookReturnRequest
+import io.github.shirohoo.library.application.data.book.BookStatResponse
 import io.github.shirohoo.library.application.service.book.BookService
 import io.github.shirohoo.library.domain.book.Book
 import org.springframework.web.bind.annotation.*
@@ -14,6 +15,12 @@ class BookController(
 ) {
     @GetMapping("/loan")
     fun countLoanedBooks(): Int = bookService.countLoanedBooks()
+
+    @GetMapping("/stat")
+    fun getBookStatistics(): List<BookStatResponse> {
+        return bookService.getBookStatistics()
+            .map { BookStatResponse(it.key, it.value.count()) }
+    }
 
     @PostMapping
     fun saveBook(@RequestBody request: BookRequest) {

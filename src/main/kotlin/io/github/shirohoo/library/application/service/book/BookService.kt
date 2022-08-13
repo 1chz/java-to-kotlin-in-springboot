@@ -2,6 +2,7 @@ package io.github.shirohoo.library.application.service.book
 
 import io.github.shirohoo.library.domain.book.Book
 import io.github.shirohoo.library.domain.book.BookRepository
+import io.github.shirohoo.library.domain.book.BookType
 import io.github.shirohoo.library.domain.user.UserLoanHistoryRepository
 import io.github.shirohoo.library.domain.user.UserLoanStatus
 import io.github.shirohoo.library.domain.user.UserRepository
@@ -37,4 +38,7 @@ class BookService(
 
     @Transactional(readOnly = true)
     fun countLoanedBooks(): Int = userLoanHistoryRepository.findAllByStatus(UserLoanStatus.LOANED).count()
+
+    @Transactional(readOnly = true)
+    fun getBookStatistics(): Map<BookType, List<Book>> = bookRepository.findAll().groupBy(Book::type)
 }

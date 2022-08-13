@@ -21,6 +21,5 @@ class UserRepositoryImpl(
     override fun findBy(username: String): User = jpaRepository.findByName(username)
         ?: throw NoSuchElementException("user not found.")
 
-
     override fun delete(user: User) = jpaRepository.delete(user)
 }

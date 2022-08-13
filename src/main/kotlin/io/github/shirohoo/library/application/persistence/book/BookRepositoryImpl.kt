@@ -8,9 +8,7 @@ import org.springframework.stereotype.Repository
 class BookRepositoryImpl(
     private val jpaRepository: BookJpaRepository
 ) : BookRepository {
-    override fun save(newBook: Book): Book {
-        return jpaRepository.save(newBook)
-    }
+    override fun save(newBook: Book): Book = jpaRepository.save(newBook)
 
     override fun findAll(): List<Book> = jpaRepository.findAll()
 

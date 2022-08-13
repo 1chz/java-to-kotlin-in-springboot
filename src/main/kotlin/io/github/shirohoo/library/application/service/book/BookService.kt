@@ -37,8 +37,12 @@ class BookService(
     }
 
     @Transactional(readOnly = true)
-    fun countLoanedBooks(): Int = userLoanHistoryRepository.findAllByStatus(UserLoanStatus.LOANED).count()
+    fun countLoanedBooks(): Int =
+        userLoanHistoryRepository.findAllByStatus(UserLoanStatus.LOANED)
+            .count()
 
     @Transactional(readOnly = true)
-    fun getBookStatistics(): Map<BookType, List<Book>> = bookRepository.findAll().groupBy(Book::type)
+    fun getBookStatistics(): Map<BookType, List<Book>> =
+        bookRepository.findAll()
+            .groupBy(Book::type)
 }

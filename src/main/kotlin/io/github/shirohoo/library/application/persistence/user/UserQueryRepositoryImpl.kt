@@ -9,10 +9,9 @@ class UserQueryRepositoryImpl(
     private val jpaQueryFactory: JPAQueryFactory,
 ) : UserQueryRepository {
 
-    override fun findAllWithHistories(): List<User> {
-        return jpaQueryFactory.selectFrom(user)
+    override fun findAllWithHistories(): List<User> =
+        jpaQueryFactory.selectFrom(user)
             .distinct()
             .innerJoin(user.userLoanHistories, userLoanHistory).fetchJoin()
             .fetch()
-    }
 }

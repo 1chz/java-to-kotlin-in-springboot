@@ -1,10 +1,12 @@
 package io.github.shirohoo.library.application.controller.user
 
-import io.github.shirohoo.library.application.data.user.*
+import io.github.shirohoo.library.application.data.user.UserCreateRequest
+import io.github.shirohoo.library.application.data.user.UserLoanHistoryResponse
+import io.github.shirohoo.library.application.data.user.UserLoanHistoryResponse.Companion.userLoanHistoryResponse
+import io.github.shirohoo.library.application.data.user.UserResponse
+import io.github.shirohoo.library.application.data.user.UserUpdateRequest
 import io.github.shirohoo.library.application.service.user.UserService
 import io.github.shirohoo.library.domain.user.User
-import io.github.shirohoo.library.domain.user.UserLoanHistory
-import io.github.shirohoo.library.domain.user.UserLoanStatus
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -35,17 +37,7 @@ class UserController(
 
     @GetMapping("/loan")
     fun getUserLoanHistories(): List<UserLoanHistoryResponse> {
-        return userService.getUsers()
+        return userService.findAllWithHistories()
             .map(::userLoanHistoryResponse)
     }
-
-    private fun userLoanHistoryResponse(user: User) = UserLoanHistoryResponse(
-        name = user.name,
-        books = user.userLoanHistories.map(::bookHistoryResponse)
-    )
-
-    private fun bookHistoryResponse(history: UserLoanHistory) = BookHistoryResponse(
-        name = history.bookTitle,
-        isReturn = history.status == UserLoanStatus.RETURNED
-    )
 }

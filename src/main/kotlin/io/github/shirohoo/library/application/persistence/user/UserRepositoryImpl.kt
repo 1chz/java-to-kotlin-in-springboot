@@ -9,23 +9,18 @@ import org.springframework.stereotype.Repository
 class UserRepositoryImpl(
     private val jpaRepository: UserJpaRepository
 ) : UserRepository {
-    override fun save(newUser: User): User {
-        return jpaRepository.save(newUser)
-    }
+    override fun save(newUser: User): User = jpaRepository.save(newUser)
 
-    override fun findAll(): List<User> {
-        return jpaRepository.findAll()
-    }
+    override fun findAll(): List<User> = jpaRepository.findAll()
 
-    override fun findBy(id: Long): User {
-        return jpaRepository.findByIdOrNull(id) ?: throw NoSuchElementException("user not found.")
-    }
+    override fun findAllWithHistories(): List<User> = jpaRepository.findAllWithHistories()
 
-    override fun findBy(username: String): User {
-        return jpaRepository.findByName(username) ?: throw NoSuchElementException("user not found.")
-    }
+    override fun findBy(id: Long): User = jpaRepository.findByIdOrNull(id)
+        ?: throw NoSuchElementException("user not found.")
 
-    override fun delete(user: User) {
-        jpaRepository.delete(user)
-    }
+    override fun findBy(username: String): User = jpaRepository.findByName(username)
+        ?: throw NoSuchElementException("user not found.")
+
+
+    override fun delete(user: User) = jpaRepository.delete(user)
 }

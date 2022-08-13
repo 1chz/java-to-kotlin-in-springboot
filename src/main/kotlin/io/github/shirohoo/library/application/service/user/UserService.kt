@@ -17,12 +17,15 @@ class UserService(
 
     @Transactional
     fun updateUsername(userId: Long, username: String) {
-        userRepository.findBy(userId).updateName(username)
+        val user = userRepository.findBy(userId)
+        user.updateName(username)
     }
 
     @Transactional
     fun deleteUser(username: String) {
         val user = userRepository.findBy(username)
-        userRepository.delete(user)
+        user.apply(userRepository::delete)
     }
+
+    fun findAllWithHistories(): List<User> = userRepository.findAllWithHistories()
 }

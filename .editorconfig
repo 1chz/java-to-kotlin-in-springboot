@@ -1166,18 +1166,21 @@ ij_properties_key_value_delimiter = equals
 ij_properties_spaces_around_key_value_delimiter = false
 
 [{*.qute.htm,*.qute.html,*.qute.json,*.qute.txt,*.qute.yaml,*.qute.yml}]
-indent_size = 4
-tab_width = 4
-ij_continuation_indent_size = 8
+indent_size = 2
+tab_width = 2
+ij_continuation_indent_size = 4
 ij_qute_keep_indents_on_empty_lines = false
 
 [{*.toml,Cargo.lock,Cargo.toml.orig,Gopkg.lock,Pipfile,poetry.lock}]
-indent_size = 4
-tab_width = 4
-ij_continuation_indent_size = 8
+indent_size = 2
+tab_width = 2
+ij_continuation_indent_size = 4
 ij_toml_keep_indents_on_empty_lines = false
 
 [{*.yaml,*.yml}]
+indent_size = 2
+tab_width = 2
+ij_continuation_indent_size = 4
 ij_yaml_align_values_properties = do_not_align
 ij_yaml_autoinsert_sequence_marker = true
 ij_yaml_block_mapping_on_new_line = false
